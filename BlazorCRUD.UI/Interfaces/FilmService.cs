@@ -26,7 +26,7 @@ namespace BlazorCRUD.UI.Interfaces
 
         public Task<IEnumerable<Film>> GetAllFilms()
         {
-            throw new NotImplementedException();
+            return this._filmRepository.GetAllFilms();
         }
 
         public Task<Film> GetFilmDetails(int id)

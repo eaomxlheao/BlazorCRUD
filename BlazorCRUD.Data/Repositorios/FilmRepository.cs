@@ -26,9 +26,11 @@ namespace BlazorCRUD.Data.Dapper.Repositorios
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Film>> GetAllFilms()
+        public async Task<IEnumerable<Film>> GetAllFilms()
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = @"SELECT Title,Director,ReleaseDate FROM Film";
+            return await db.QueryAsync<Film>(sql.ToString(), new { });
         }
 
         public Task<Film> GetFilmDetails(int id)
