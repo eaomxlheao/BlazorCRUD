@@ -21,7 +21,7 @@ namespace BlazorCRUD.UI.Interfaces
 
         public Task<bool> DeleteFilm(int id)
         {
-            throw new NotImplementedException();
+            return this._filmRepository.DeleteFilm(id);
         }
 
         public Task<IEnumerable<Film>> GetAllFilms()
