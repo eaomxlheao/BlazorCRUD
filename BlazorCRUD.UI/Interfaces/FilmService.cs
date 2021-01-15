@@ -31,7 +31,7 @@ namespace BlazorCRUD.UI.Interfaces
 
         public Task<Film> GetFilmDetails(int id)
         {
-            throw new NotImplementedException();
+            return this._filmRepository.GetFilmDetails(id);
         }
 
         public Task<bool> SaveFilm(Film film)
@@ -42,7 +42,7 @@ namespace BlazorCRUD.UI.Interfaces
             }
             else
             {
-                return null;
+                return this._filmRepository.UpdateFilm(film);
             }
         }
     }

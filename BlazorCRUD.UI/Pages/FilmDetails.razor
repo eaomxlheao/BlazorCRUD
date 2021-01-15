@@ -1,7 +1,9 @@
 ﻿@page "/filmdetails"
+@page "/filmdetails/{id:int}"
 @using BlazorCRUD.Model
 @using BlazorCRUD.UI.Interfaces
 @inject IFilmService FilmService
+@inject NavigationManager NavigationManager
 
 <h1>FilmDetails</h1>
 <EditForm Model="@film">
@@ -27,6 +29,9 @@
     </table>
 </EditForm>
 @code {
+    [Parameter]
+    public int id { get; set; }
+
     Film film = new Film();
 
     protected void CancelFilm()
@@ -37,5 +42,18 @@
     protected async Task SaveFilm()
     {
         await FilmService.SaveFilm(film);
+        NavigationManager.NavigateTo("/filmlist");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (id == 0)
+        {
+            film.ReleaseDate = DateTime.Now;
+        }
+        else
+        {
+            film = await FilmService.GetFilmDetails(id);
+        }
     }
 }
